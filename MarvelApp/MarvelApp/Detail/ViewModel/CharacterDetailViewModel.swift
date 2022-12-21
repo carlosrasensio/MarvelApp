@@ -16,12 +16,12 @@ protocol CharacterDetailViewModelProtocol {
 }
 
 final class CharacterDetailViewModel: CharacterDetailViewModelProtocol {
-    // MARK: - Variables
+    // MARK: Variables
     weak var view: CharacterDetailViewController?
     var router: CharacterDetailRouter?
     private var dataManager = DataManager()
 
-    // MARK: - Connecting view and router
+    // MARK: Connecting view and router
     func bind(view: CharacterDetailViewController, router: CharacterDetailRouter) {
         self.view = view
         self.router = router

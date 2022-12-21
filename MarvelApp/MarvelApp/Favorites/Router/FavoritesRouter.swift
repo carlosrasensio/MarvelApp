@@ -16,19 +16,19 @@ protocol FavoritesRouterProtocol {
 }
 
 final class FavoritesRouter: FavoritesRouterProtocol {
-    // MARK: - Variables
+    // MARK: Variables
     private var sourceView: UIViewController?
     var viewController: UIViewController {
         createFavoritesViewController()
     }
     var favorites: [Character]
 
-    // MARK: - Initializer
+    // MARK: Initializer
     init(favorites: [Character] = []) {
         self.favorites = favorites
     }
 
-    // MARK: - Configuration functions
+    // MARK: Configuration functions
     func createFavoritesViewController() -> UIViewController {
         let view = FavoritesViewController(nibName: "FavoritesViewController", bundle: Bundle.main)
         view.favorites = favorites
@@ -41,7 +41,7 @@ final class FavoritesRouter: FavoritesRouterProtocol {
         self.sourceView = view
     }
 
-    // MARK: - Navigation function
+    // MARK: Navigation function
     func navigateToCharacterDetail(_ character: Character) {
         let characterDetailView = CharacterDetailRouter(character: character, isHiddenFavoriteButton: true).viewController
         sourceView?.navigationController?.pushViewController(characterDetailView, animated: true)

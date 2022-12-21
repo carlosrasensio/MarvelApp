@@ -8,7 +8,7 @@
 import UIKit
 
 class CharacterCustomCell: UITableViewCell {
-    // MARK: - Outlets
+    // MARK: Outlets
     @IBOutlet weak var characterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
 
@@ -17,7 +17,7 @@ class CharacterCustomCell: UITableViewCell {
         setCustomCell()
     }
 
-    // MARK: - Custom cell configuration
+    // MARK: Custom cell configuration
     func setCustomCell() {
         self.backgroundColor = .black
         self.titleLabel.layer.cornerRadius = self.titleLabel.frame.size.height/2.0

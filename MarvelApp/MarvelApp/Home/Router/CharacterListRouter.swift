@@ -17,13 +17,13 @@ protocol CharacterListRouterProtocol {
 }
 
 final class CharacterListRouter: CharacterListRouterProtocol {
-    // MARK: - Variables
+    // MARK: Variables
     private var sourceView: UIViewController?
     var viewController: UIViewController {
         createCharacterListViewController()
     }
 
-    // MARK: - Configuration functions
+    // MARK: Configuration functions
     func createCharacterListViewController() -> UIViewController {
         let view = CharacterListViewController(nibName: "CharacterListViewController", bundle: Bundle.main)
 
@@ -35,7 +35,7 @@ final class CharacterListRouter: CharacterListRouterProtocol {
         self.sourceView = view
     }
 
-    // MARK: - Navigation function
+    // MARK: Navigation function
     func navigateToCharacterDetail(_ character: Character) {
         let characterDetailView = CharacterDetailRouter(character: character).viewController
         sourceView?.navigationController?.pushViewController(characterDetailView, animated: true)

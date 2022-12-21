@@ -13,15 +13,15 @@ protocol FavoritesViewControllerProtocol {
 }
 
 final class FavoritesViewController: UIViewController, FavoritesViewControllerProtocol {
-    // MARK: - Outlet
+    // MARK: Outlet
     @IBOutlet weak var tableView: UITableView!
 
-    // MARK: - Variables
+    // MARK: Variables
     private var router = FavoritesRouter()
     private var viewModel = FavoritesViewModel()
     var favorites = [Character]()
 
-    // MARK: - Life cycle
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationItem()
@@ -30,14 +30,14 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
         getFavorites()
     }
 
-    // MARK: - NavigationItem configuration
+    // MARK: NavigationItem configuration
     private func configureNavigationItem() {
         navigationController?.navigationBar.barTintColor = UIColor.red
         self.navigationItem.title = "Favorites"
         navigationItem.rightBarButtonItem?.tintColor = .black
     }
 
-    // MARK: - Table view configuration
+    // MARK: Table view configuration
     func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -54,6 +54,7 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
 }
 
 // MARK: - Get data from ViewModel with RxSwift
+
 extension FavoritesViewController {
     func getFavorites() {
         self.favorites = viewModel.getFavorites()
@@ -65,7 +66,8 @@ extension FavoritesViewController {
     }
 }
 
-// MARK: - TableView functions
+// MARK: - UITableViewDataSource
+
 extension FavoritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favorites.count
@@ -85,6 +87,8 @@ extension FavoritesViewController: UITableViewDataSource {
         return 200
     }
 }
+
+// MARK: - UITableViewDelegate
 
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

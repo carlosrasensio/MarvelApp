@@ -15,7 +15,7 @@ protocol CharacterDetailRouterProtocol {
 }
 
 final class CharacterDetailRouter: CharacterDetailRouterProtocol {
-    // MARK: - Variables
+    // MARK: Variables
     private var sourceView: UIViewController?
     var viewController: UIViewController {
         createCharacterDetailViewController()
@@ -23,13 +23,13 @@ final class CharacterDetailRouter: CharacterDetailRouterProtocol {
     var character: Character?
     var isHiddenFavoriteButton: Bool
 
-    // MARK: - Initializer
+    // MARK: Initializer
     init(character: Character? = nil, isHiddenFavoriteButton: Bool = false) {
         self.character = character
         self.isHiddenFavoriteButton = isHiddenFavoriteButton
     }
 
-    // MARK: - Configuration functions
+    // MARK: Configuration functions
     func createCharacterDetailViewController() -> UIViewController {
         let view = CharacterDetailViewController(nibName: "CharacterDetailViewController", bundle: Bundle.main)
         view.character = character

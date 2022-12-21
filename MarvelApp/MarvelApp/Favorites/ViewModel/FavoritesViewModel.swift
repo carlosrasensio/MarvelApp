@@ -16,19 +16,19 @@ protocol FavoritesViewModelProtocol {
 }
 
 final class FavoritesViewModel: FavoritesViewModelProtocol {
-    // MARK: - Variables
+    // MARK: Variables
     weak var view: FavoritesViewController?
     var router: FavoritesRouter?
     private var dataManager = DataManager()
 
-    // MARK: - Connecting view and router
+    // MARK: Connecting view and router
     func bind(view: FavoritesViewController, router: FavoritesRouter) {
         self.view = view
         self.router = router
         self.router?.setSourceView(view)
     }
 
-    // MARK: - Data manager
+    // MARK: Data manager
     func getFavorites() -> [Character] {
         return dataManager.getFavorites()
     }
@@ -37,7 +37,7 @@ final class FavoritesViewModel: FavoritesViewModelProtocol {
         dataManager.deleteFavorite(name)
     }
 
-    // MARK: - Navigation
+    // MARK: Navigation
     func createCharacterDetailView(_ character: Character) {
         router?.navigateToCharacterDetail(character)
     }

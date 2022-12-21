@@ -14,7 +14,7 @@ protocol DataManagerProtocol {
     func getFavorites() -> [Character]
 }
 
-class DataManager: DataManagerProtocol {
+final class DataManager: DataManagerProtocol {
     lazy var persistentContainer: NSPersistentContainer = {
         let persistentContainer = NSPersistentContainer(name: "MarvelApp")
         persistentContainer.loadPersistentStores { _, error in
@@ -28,7 +28,7 @@ class DataManager: DataManagerProtocol {
         persistentContainer.viewContext
     }
 
-    // MARK: - Save, delete and fetch methods
+    // MARK: Save, delete and fetch methods
     func saveFavorite(_ favorite: Character) {
         let marvelCharacter = MarvelCharacter(context: context)
         marvelCharacter.setValuesForKeys(["name": favorite.name, "desc": favorite.description, "thumbnailPath": favorite.thumbnail.path, "thumbnailExtension": favorite.thumbnail.imageExtension])

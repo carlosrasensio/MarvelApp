@@ -17,24 +17,24 @@ protocol CharacterListViewModelProtocol {
 }
 
 final class CharacterListViewModel: CharacterListViewModelProtocol {
-    // MARK: - Variables
+    // MARK: Variables
     weak var view: CharacterListViewController?
     var router: CharacterListRouter?
     private var networkManager = NetworkManager()
 
-    // MARK: - Connecting view and router
+    // MARK: Connecting view and router
     func bind(view: CharacterListViewController, router: CharacterListRouter) {
         self.view = view
         self.router = router
         self.router?.setSourceView(view)
     }
 
-    // MARK: - Get data from service
+    // MARK: Get data from service
     func getCharacters(offset: Int) -> Observable<[Character]> {
         return networkManager.getCharacters(offset: offset)
     }
 
-    // MARK: - Navigation
+    // MARK: Navigation
     func createCharacterDetailView(_ character: Character) {
         router?.navigateToCharacterDetail(character)
     }

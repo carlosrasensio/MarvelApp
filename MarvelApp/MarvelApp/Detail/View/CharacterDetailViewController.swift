@@ -12,19 +12,19 @@ protocol CharacterDetailViewControllerProtocol {
 }
 
 final class CharacterDetailViewController: UIViewController, CharacterDetailViewControllerProtocol {
-    // MARK: - Outlets
+    // MARK: Outlets
     @IBOutlet weak var characterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet private weak var favoriteButton: UIButton!
 
-    // MARK: - Variables
+    // MARK: Variables
     private var router = CharacterDetailRouter()
     private var viewModel = CharacterDetailViewModel()
     var character: Character?
     var isHiddenFavoriteButton: Bool?
 
-    // MARK: - Life cycle
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
@@ -32,7 +32,7 @@ final class CharacterDetailViewController: UIViewController, CharacterDetailView
         viewModel.bind(view: self, router: router)
     }
 
-    // MARK: - NavigationItem configuration
+    // MARK: NavigationItem configuration
     private func configureNavigationBar() {
         self.navigationItem.title = "Detail"
     }
@@ -59,7 +59,7 @@ final class CharacterDetailViewController: UIViewController, CharacterDetailView
         self.favoriteButton.addTarget(self, action: #selector(didPressFavoriteButton), for: .touchUpInside)
     }
 
-    // MARK: - Button action
+    // MARK: Button action
     @objc func didPressFavoriteButton() {
         saveFavorite()
         guard let character = character else { return }

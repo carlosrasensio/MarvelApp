@@ -15,11 +15,11 @@ protocol CharacterListViewControllerProtocol {
 }
 
 final class CharacterListViewController: UIViewController, CharacterListViewControllerProtocol {
-    // MARK: - Outlets
+    // MARK: Outlets
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
 
-    // MARK: - Variables
+    // MARK: Variables
     private var router = CharacterListRouter()
     private var viewModel = CharacterListViewModel()
     private var disposeBag = DisposeBag()
@@ -39,7 +39,7 @@ final class CharacterListViewController: UIViewController, CharacterListViewCont
         case loader
     }
 
-    // MARK: - Life cycle
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
@@ -49,14 +49,14 @@ final class CharacterListViewController: UIViewController, CharacterListViewCont
         getCharacters()
     }
 
-    // MARK: - NavigationItem configuration
+    // MARK: NavigationItem configuration
     private func configureNavigationBar() {
         self.navigationItem.title = "Home"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favs", style: .plain, target: self, action: #selector(showFavorites))
         navigationItem.rightBarButtonItem?.tintColor = .black
     }
 
-    // MARK: - Table view configuration
+    // MARK: Table view configuration
     func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -78,7 +78,7 @@ final class CharacterListViewController: UIViewController, CharacterListViewCont
         }
     }
 
-    // MARK: - Activity indicator configuraion
+    // MARK: Activity indicator configuraion
     private func setActivityIndicator(_ show: Bool) {
         if show {
             self.activityIndicator.startAnimating()
@@ -90,6 +90,7 @@ final class CharacterListViewController: UIViewController, CharacterListViewCont
 }
 
 // MARK: - Get data from ViewModel with RxSwift
+
 extension CharacterListViewController {
     func getCharacters(offset: Int = 0) {
         setActivityIndicator(true)
@@ -110,6 +111,7 @@ extension CharacterListViewController {
 }
 
 // MARK: - Navigation bar right item action
+
 private extension CharacterListViewController {
     @objc func showFavorites() {
         viewModel.createFavoritesView()
@@ -158,7 +160,8 @@ extension CharacterListViewController: UISearchControllerDelegate {
     }
 }
 
-// MARK: - TableView functions
+// MARK: - UITableViewDataSource
+
 extension CharacterListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -206,6 +209,8 @@ extension CharacterListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
+
 extension CharacterListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if searchController.isActive && searchController.searchBar.text != "" {
@@ -225,6 +230,6 @@ extension CharacterListViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        200
     }
 }

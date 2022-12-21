@@ -6,13 +6,14 @@
 //
 
 import Foundation
+
 import RxSwift
 
 protocol NetworkManagerProtocol {
     func getCharacters(offset: Int) -> Observable<[Character]>
 }
 
-class NetworkManager: NetworkManagerProtocol {
+final class NetworkManager: NetworkManagerProtocol {
     func getCharacters(offset: Int) -> Observable<[Character]>  {
         return Observable.create { observer -> Disposable in
             let urlHandler = URLHandler()
