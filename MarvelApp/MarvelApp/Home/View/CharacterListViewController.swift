@@ -80,12 +80,12 @@ final class CharacterListViewController: UIViewController, CharacterListViewCont
 
     // MARK: Activity indicator configuraion
     private func setActivityIndicator(_ show: Bool) {
+      activityIndicator.isHidden = !show
         if show {
-            self.activityIndicator.startAnimating()
+            activityIndicator.startAnimating()
         } else {
-            self.activityIndicator.stopAnimating()
+            activityIndicator.stopAnimating()
         }
-        self.activityIndicator.isHidden = !show
     }
 }
 

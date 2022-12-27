@@ -36,6 +36,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
+// MARK: - Navigation bar UI
+
 extension SceneDelegate {
     func configureNavigationBar(_ navigationController: UINavigationController) {
         let appearance = UINavigationBarAppearance()

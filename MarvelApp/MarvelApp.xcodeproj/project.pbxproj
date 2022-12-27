@@ -262,7 +262,7 @@
 				9E630BD127BF3BF600D42D86 /* NetworkTests */,
 				9E630BC927BF394100D42D86 /* ModelTests */,
 				9E630BCC27BF39A100D42D86 /* Helpers */,
-				9E70FF5727BE023E00789EEA /* Mock */,
+				9E70FF5727BE023E00789EEA /* Mocks */,
 			);
 			path = MarvelAppTests;
 			sourceTree = "<group>";
@@ -414,12 +414,12 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		9E70FF5727BE023E00789EEA /* Mock */ = {
+		9E70FF5727BE023E00789EEA /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
 				9E70FF5827BE025700789EEA /* MockCharacters.json */,
 			);
-			path = Mock;
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		EDBCD81ED9DA814C9D9B8145 /* Frameworks */ = {
