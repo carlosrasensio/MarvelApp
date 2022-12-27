@@ -15,7 +15,7 @@ struct Constants {
         static let version = 1
         static let type = "public"
         static let timeStamp = Date().timeIntervalSince1970
-        static let privateApiKey = ""   // TODO: Insert private api key
+        static let privateApiKey = "8baa4177115fb7f1a5af06fb4a970efdef077306"   // TODO: Insert private api key
         static let publicApiKey = "62c59e290474b734d02ee4ffe458df41"
         static let limit = 50
 
