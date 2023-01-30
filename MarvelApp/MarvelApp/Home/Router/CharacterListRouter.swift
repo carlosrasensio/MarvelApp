@@ -25,7 +25,7 @@ final class CharacterListRouter: CharacterListRouterProtocol {
 
     // MARK: Configuration functions
     func createCharacterListViewController() -> UIViewController {
-        let view = CharacterListViewController(nibName: "CharacterListViewController", bundle: Bundle.main)
+        let view = CharacterListViewController(router: CharacterListRouter(), viewModel: CharacterListViewModel(), networkManager: NetworkManager())
 
         return view
     }
