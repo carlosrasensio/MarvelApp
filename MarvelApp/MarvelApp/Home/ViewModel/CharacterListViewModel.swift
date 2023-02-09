@@ -28,7 +28,7 @@ final class CharacterListViewModel: CharacterListViewModelProtocol {
   func bind(view: CharacterListViewControllerProtocol, router: CharacterListRouterProtocol, networkManager: NetworkManagerProtocol) {
     self.view = view
     self.router = router
-    self.router?.setSourceView(view as! UIViewController)
+    self.router?.setSourceView(view as? UIViewController)
     self.networkManager = networkManager
   }
   
