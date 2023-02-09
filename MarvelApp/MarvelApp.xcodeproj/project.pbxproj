@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9E004DCB27C4573C008693E5 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E004DC927C4573C008693E5 /* FavoritesViewController.swift */; };
-		9E004DCC27C4573C008693E5 /* FavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E004DCA27C4573C008693E5 /* FavoritesViewController.xib */; };
 		9E004DCE27C45747008693E5 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E004DCD27C45747008693E5 /* FavoritesViewModel.swift */; };
 		9E004DD027C45752008693E5 /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E004DCF27C45752008693E5 /* FavoritesRouter.swift */; };
 		9E004DD627C468CE008693E5 /* MarvelApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E004DD427C468CE008693E5 /* MarvelApp.xcdatamodeld */; };
@@ -69,7 +68,6 @@
 		64E7C6C72D3AB5778D8CF5C2 /* Pods-MarvelAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelAppTests.release.xcconfig"; path = "Target Support Files/Pods-MarvelAppTests/Pods-MarvelAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		845701402C38F57FD7336A92 /* Pods-MarvelApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelApp.release.xcconfig"; path = "Target Support Files/Pods-MarvelApp/Pods-MarvelApp.release.xcconfig"; sourceTree = "<group>"; };
 		9E004DC927C4573C008693E5 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
-		9E004DCA27C4573C008693E5 /* FavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesViewController.xib; sourceTree = "<group>"; };
 		9E004DCD27C45747008693E5 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		9E004DCF27C45752008693E5 /* FavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		9E004DD527C468CE008693E5 /* MarvelApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MarvelApp.xcdatamodel; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				9E004DC927C4573C008693E5 /* FavoritesViewController.swift */,
-				9E004DCA27C4573C008693E5 /* FavoritesViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -538,7 +535,6 @@
 			files = (
 				9E70FEF627BD29EC00789EEA /* LaunchScreen.storyboard in Resources */,
 				9E70FEF327BD29EC00789EEA /* Assets.xcassets in Resources */,
-				9E004DCC27C4573C008693E5 /* FavoritesViewController.xib in Resources */,
 				9E70FF4C27BDB27600789EEA /* CharacterCustomCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

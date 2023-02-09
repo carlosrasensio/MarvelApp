@@ -30,7 +30,7 @@ final class FavoritesRouter: FavoritesRouterProtocol {
 
     // MARK: Configuration functions
     func createFavoritesViewController() -> UIViewController {
-        let view = FavoritesViewController(nibName: "FavoritesViewController", bundle: Bundle.main)
+        let view = FavoritesViewController(router: FavoritesRouter(), viewModel: FavoritesViewModel(), dataManager: DataManager())
         view.favorites = favorites
 
         return view

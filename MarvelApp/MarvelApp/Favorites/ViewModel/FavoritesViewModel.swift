@@ -6,39 +6,46 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol FavoritesViewModelProtocol {
-    var view: FavoritesViewController? { get }
-    var router: FavoritesRouter? { get }
-    func bind(view: FavoritesViewController, router: FavoritesRouter)
-    func getFavorites() -> [Character]
-    func deleteFavorite(_ name: String)
+  var view: FavoritesViewControllerProtocol? { get }
+  var router: FavoritesRouterProtocol? { get }
+  var dataManager: DataManagerProtocol? { get }
+  func bind(view: FavoritesViewControllerProtocol, router: FavoritesRouterProtocol, dataManager: DataManagerProtocol)
+  func getFavorites() -> [Character]
+  func deleteFavorite(_ name: String)
+  func createCharacterDetailView(_ character: Character)
 }
 
 final class FavoritesViewModel: FavoritesViewModelProtocol {
-    // MARK: Variables
-    weak var view: FavoritesViewController?
-    var router: FavoritesRouter?
-    private var dataManager = DataManager()
-
-    // MARK: Connecting view and router
-    func bind(view: FavoritesViewController, router: FavoritesRouter) {
-        self.view = view
-        self.router = router
-        self.router?.setSourceView(view)
-    }
-
-    // MARK: Data manager
-    func getFavorites() -> [Character] {
-        return dataManager.getFavorites()
-    }
-
-    func deleteFavorite(_ name: String) {
-        dataManager.deleteFavorite(name)
-    }
-
-    // MARK: Navigation
-    func createCharacterDetailView(_ character: Character) {
-        router?.navigateToCharacterDetail(character)
-    }
+  // MARK: Variables
+  var view: FavoritesViewControllerProtocol?
+  var router: FavoritesRouterProtocol?
+  var dataManager: DataManagerProtocol?
+  
+  // MARK: Connecting view and router
+  func bind(view: FavoritesViewControllerProtocol, router: FavoritesRouterProtocol, dataManager: DataManagerProtocol) {
+    self.view = view
+    self.router = router
+    self.dataManager = dataManager
+    self.router?.setSourceView(view as? UIViewController)
+  }
+  
+  // MARK: Data manager
+  func getFavorites() -> [Character] {
+    guard let dataManager else { return [Character]() }
+  
+    return dataManager.getFavorites()
+  }
+  
+  func deleteFavorite(_ name: String) {
+    guard let dataManager else { return }
+    dataManager.deleteFavorite(name)
+  }
+  
+  // MARK: Navigation
+  func createCharacterDetailView(_ character: Character) {
+    router?.navigateToCharacterDetail(character)
+  }
 }

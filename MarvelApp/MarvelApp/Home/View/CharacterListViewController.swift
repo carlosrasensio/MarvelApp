@@ -58,6 +58,7 @@ final class CharacterListViewController: UIViewController, CharacterListViewCont
     setupNavigationBar()
     setupSearchBarController()
     setupTableView()
+    setupActivityIndicator()
     viewModel.bind(view: self, router: router, networkManager: networkManager)
     getCharacters()
   }
@@ -84,9 +85,17 @@ final class CharacterListViewController: UIViewController, CharacterListViewCont
     tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
   }
   
+  func setupActivityIndicator() {
+    view.addSubview(activityIndicator)
+    activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    
+    activityIndicator.color = .red
+  }
+  
   private func reloadTableView() {
     DispatchQueue.main.async {
-      self.setActivityIndicator(false)
+      self.showActivityIndicator(false)
       self.tableView.reloadData()
     }
   }
@@ -99,7 +108,7 @@ final class CharacterListViewController: UIViewController, CharacterListViewCont
   }
   
   // MARK: Activity indicator configuraion
-  private func setActivityIndicator(_ show: Bool) {
+  private func showActivityIndicator(_ show: Bool) {
     activityIndicator.isHidden = !show
     if show {
       activityIndicator.startAnimating()
@@ -113,7 +122,7 @@ final class CharacterListViewController: UIViewController, CharacterListViewCont
 
 extension CharacterListViewController {
   func getCharacters(offset: Int = 0) {
-    setActivityIndicator(true)
+    showActivityIndicator(true)
     return viewModel.getCharacters(offset: offset)
       .subscribe(on: MainScheduler.instance)
       .observe(on: MainScheduler.instance)
