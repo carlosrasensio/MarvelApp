@@ -10,8 +10,9 @@ import XCTest
 
 protocol DecodableTestCase: AnyObject {
     associatedtype T: Decodable
-    var sut: T! { get set } // SUT --> System Under Test
+    var sut: T! { get set }
 }
+
 extension DecodableTestCase {
     func givenSUTFromJSON(fileName: String = "\(T.self)") throws {
         let decoder = JSONDecoder()

@@ -13,7 +13,7 @@ protocol FavoritesViewModelProtocol {
   var router: FavoritesRouterProtocol? { get }
   var dataManager: DataManagerProtocol? { get }
   func bind(view: FavoritesViewControllerProtocol, router: FavoritesRouterProtocol, dataManager: DataManagerProtocol)
-  func getFavorites() -> [Character]
+  func getCoreDataFavorites() -> [Character]
   func deleteFavorite(_ name: String)
   func createCharacterDetailView(_ character: Character)
 }
@@ -33,10 +33,10 @@ final class FavoritesViewModel: FavoritesViewModelProtocol {
   }
   
   // MARK: Data manager
-  func getFavorites() -> [Character] {
+  func getCoreDataFavorites() -> [Character] {
     guard let dataManager else { return [Character]() }
   
-    return dataManager.getFavorites()
+    return dataManager.getCoreDataFavorites()
   }
   
   func deleteFavorite(_ name: String) {

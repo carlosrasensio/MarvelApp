@@ -11,7 +11,7 @@ import CoreData
 protocol DataManagerProtocol {
     func saveFavorite(_ favorite: Character)
     func deleteFavorite(_ name: String)
-    func getFavorites() -> [Character]
+    func getCoreDataFavorites() -> [Character]
 }
 
 final class DataManager: DataManagerProtocol {
@@ -44,7 +44,7 @@ final class DataManager: DataManagerProtocol {
         fetchRequest.predicate = NSPredicate(format:"name = %@", name)
         do {
             let favorites = try context.fetch(fetchRequest)
-            if favorites.count > 0 {
+            if !favorites.isEmpty {
                 context.delete(favorites[0])
             }
             try context.save()
@@ -53,7 +53,7 @@ final class DataManager: DataManagerProtocol {
         }
     }
 
-    func getFavorites() -> [Character] {
+    func getCoreDataFavorites() -> [Character] {
         do {
             let fetchRequest = NSFetchRequest<MarvelCharacter>(entityName: "MarvelCharacter")
             let marvelCharacters = try context.fetch(fetchRequest)

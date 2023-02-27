@@ -98,7 +98,7 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
 
 extension FavoritesViewController {
   func getFavorites() {
-    self.favorites = viewModel.getFavorites()
+    self.favorites = viewModel.getCoreDataFavorites()
     self.reloadTableView()
   }
   
