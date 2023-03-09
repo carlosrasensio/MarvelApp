@@ -42,6 +42,7 @@ final class CharacterListViewController: UIViewController, CharacterListViewCont
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .black
         configureNavigationBar()
         configureSearchBarController()
         configureTableView()
@@ -62,6 +63,7 @@ final class CharacterListViewController: UIViewController, CharacterListViewCont
         tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(UINib(nibName: Constants.CustomCells.characterCellId, bundle: nil), forCellReuseIdentifier: Constants.CustomCells.characterCellId)
+      tableView.backgroundColor = .black
     }
 
     private func reloadTableView() {
@@ -103,7 +105,7 @@ extension CharacterListViewController {
                 }
                 self.reloadTableView()
             } onError: { error in
-                print("\n[X] Error: \(error.localizedDescription)\n")
+                print("\n❌ Error: \(error.localizedDescription)\n")
                 self.showAlert(title: "ERROR", message: error.localizedDescription)
             } onCompleted: {}
             .disposed(by: disposeBag)
@@ -148,7 +150,7 @@ extension CharacterListViewController: UISearchControllerDelegate {
                     return character.name.contains(result)
                 })
             } onError: { error in
-                print("\n[X] Error: \(error.localizedDescription)\n")
+                print("\n❌ Error: \(error.localizedDescription)\n")
                 self.showAlert(title: "ERROR", message: error.localizedDescription)
             }
             .disposed(by: disposeBag)
