@@ -8,66 +8,147 @@
 import UIKit
 
 protocol CharacterDetailViewControllerProtocol {
-    func configureCharacterDetailView()
+  func setupInfo()
 }
 
-final class CharacterDetailViewController: UIViewController, CharacterDetailViewControllerProtocol {
-    // MARK: Outlets
-    @IBOutlet weak var characterImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var favoriteButton: UIButton!
+final class CharacterDetailViewController: UIViewController {
+  // MARK: Objects
+  private lazy var characterImageView = UIImageView()
+  private lazy var titleLabel = UILabel()
+  private lazy var descriptionLabel = UILabel()
+  private lazy var favoriteButton = UIButton()
+  
+  // MARK: Variables
+  private var router: CharacterDetailRouterProtocol
+  private var viewModel: CharacterDetailViewModelProtocol
+  private var coreDataManager: CoreDataManagerProtocol
+  var character: Character?
+  var isHiddenFavoriteButton: Bool?
+  
+  // MARK: Initializers
+  init(router: CharacterDetailRouterProtocol, viewModel: CharacterDetailViewModelProtocol, coreDataManager: CoreDataManagerProtocol) {
+    self.router = router
+    self.viewModel = viewModel
+    self.coreDataManager = coreDataManager
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  // MARK: Life cycle
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setupNavigationBar()
+    setupUI()
+    setupInfo()
+    viewModel.bind(view: self, router: router, coreDataManager: coreDataManager)
+  }
+}
 
-    // MARK: Variables
-    private var router = CharacterDetailRouter()
-    private var viewModel = CharacterDetailViewModel()
-    var character: Character?
-    var isHiddenFavoriteButton: Bool?
-
-    // MARK: Life cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureNavigationBar()
-        configureCharacterDetailView()
-        viewModel.bind(view: self, router: router)
+// MARK: - CharacterDetailViewControllerProtocol
+extension CharacterDetailViewController: CharacterDetailViewControllerProtocol {
+  func setupInfo() {
+    guard let character = character else { return }
+    characterImageView.getImageFromURL(character.thumbnail.path, .portrait_incredible, character.thumbnail.imageExtension)
+    titleLabel.text = character.name
+    if character.description == "" {
+      descriptionLabel.text = "*No info*"
+    } else {
+      descriptionLabel.text = character.description
     }
+    favoriteButton.setTitle("Favorite", for: .normal)
+  }
+}
 
-    // MARK: NavigationItem configuration
-    private func configureNavigationBar() {
-        self.navigationItem.title = "Detail"
+// MARK: - Private methods
+private extension CharacterDetailViewController {
+  func setupNavigationBar() {
+    self.navigationItem.title = "Detail"
+  }
+  
+  func setupUI() {
+    DispatchQueue.main.async {
+      self.view.backgroundColor = .black
+      self.setupCharacterImageView()
+      self.setupTitleLabel()
+      self.setupDescriptionLabel()
+      self.setupFavoriteButton()
     }
+  }
+  
+  func setupCharacterImageView() {
+    view.addSubview(characterImageView)
+    characterImageView.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      characterImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
+      characterImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
+      characterImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
+      characterImageView.heightAnchor.constraint(equalToConstant: 320)
+    ])
+  }
+  
+  func setupTitleLabel() {
+    view.addSubview(titleLabel)
+    titleLabel.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      titleLabel.topAnchor.constraint(equalTo: characterImageView.bottomAnchor, constant: 36),
+      titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
+      titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
+      titleLabel.heightAnchor.constraint(equalToConstant: 30)
+    ])
+    
+    titleLabel.font = .boldSystemFont(ofSize: 24)
+    titleLabel.textAlignment = .center
+    titleLabel.textColor = .white
+  }
 
-    // MARK: View configuration
-    func configureCharacterDetailView() {
-        guard let character = character else { return }
-        self.characterImageView.getImageFromURL(character.thumbnail.path, .portrait_incredible, character.thumbnail.imageExtension)
-        self.titleLabel.text = character.name
-        if character.description == "" {
-            self.descriptionLabel.text = "*No info*"
-        } else {
-            self.descriptionLabel.text = character.description
-        }
-        configureFavoriteButton()
-    }
+  func setupDescriptionLabel() {
+    view.addSubview(descriptionLabel)
 
-    func configureFavoriteButton() {
-        self.favoriteButton.isHidden = isHiddenFavoriteButton ?? false
-        self.favoriteButton.backgroundColor = .red
-        self.favoriteButton.tintColor = .black
-        self.favoriteButton.setTitle("Favorite", for: .normal)
-        self.favoriteButton.layer.cornerRadius = self.favoriteButton.frame.size.height/2.0
-        self.favoriteButton.addTarget(self, action: #selector(didPressFavoriteButton), for: .touchUpInside)
-    }
+    descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 24),
+      descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
+      descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80)
+    ])
 
-    // MARK: Button action
-    @objc func didPressFavoriteButton() {
-        saveFavorite()
-        guard let character = character else { return }
-        self.showAlert(title: "Congrats!", message: "The character \(character.name) has been saved successfully.")
-    }
+    descriptionLabel.textAlignment = .justified
+    descriptionLabel.numberOfLines = 0
+    descriptionLabel.textColor = .white
+  }
 
-    private func saveFavorite() {
-        guard let character = character else { return }
-        viewModel.saveFavorite(character)
-    }
+  func setupFavoriteButton() {
+    view.addSubview(favoriteButton)
+
+    favoriteButton.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      favoriteButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 36),
+      favoriteButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -36),
+      favoriteButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      favoriteButton.heightAnchor.constraint(equalToConstant: 40),
+      favoriteButton.widthAnchor.constraint(equalToConstant: 120)
+    ])
+
+    favoriteButton.isHidden = isHiddenFavoriteButton ?? false
+    favoriteButton.backgroundColor = .red
+    favoriteButton.setTitleColor(.black, for: .normal)
+    favoriteButton.layer.cornerRadius = 20
+    favoriteButton.addTarget(self, action: #selector(didPressFavoriteButton), for: .touchUpInside)
+  }
+  
+  func saveFavorite() {
+    guard let character = character else { return }
+    viewModel.saveFavorite(character)
+  }
+}
+
+// MARK: - Actions
+@objc extension CharacterDetailViewController {
+  func didPressFavoriteButton() {
+    saveFavorite()
+    guard let character = character else { return }
+    showAlert(title: "Congrats!", message: "The character \(character.name) has been saved successfully.")
+  }
 }

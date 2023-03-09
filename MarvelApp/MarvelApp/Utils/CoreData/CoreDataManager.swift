@@ -1,5 +1,5 @@
 //
-//  DataManager.swift
+//  CoreDataManager.swift
 //  MarvelApp
 //
 //  Created by crodrigueza on 16/2/22.
@@ -8,35 +8,34 @@
 import Foundation
 import CoreData
 
-protocol DataManagerProtocol {
+protocol CoreDataManagerProtocol {
+  func saveContext()
   func saveFavorite(_ favorite: Character)
   func deleteFavorite(_ name: String)
-  func getFavorites() -> [Character]
+  func getCoreDataFavorites() -> [Character]
 }
 
-final class DataManager {
-  let coreDataModel = "MarvelApp"
-  let characterEntity = "MarvelCharacter"
-  
-  
-  
+final class CoreDataManager {
   // MARK: Core Data stack
   lazy var persistentContainer: NSPersistentContainer = {
-    let persistentContainer = NSPersistentContainer(name: coreDataModel)
-    persistentContainer.loadPersistentStores { _, error in
+    let container = NSPersistentContainer(name: Constants.CoreDataManager.coreDataModel)
+    container.loadPersistentStores(completionHandler: { _, error in
       if let error = error as NSError? {
         fatalError("\n❌ Unresolved error \(error), \(error.userInfo)")
       }
-    }
+    })
     
-    return persistentContainer
+    return container
   }()
   
   var context: NSManagedObjectContext {
     persistentContainer.viewContext
   }
-  
-  // MARK: Core Data Saving support
+}
+
+// MARK: - CoreDataManagerProtocol
+
+extension CoreDataManager: CoreDataManagerProtocol {
   func saveContext() {
     let context = persistentContainer.viewContext
     if context.hasChanges {
@@ -48,11 +47,7 @@ final class DataManager {
       }
     }
   }
-}
-
-// MARK: - DataManagerProtocol
-
-extension DataManager: DataManagerProtocol {
+  
   func saveFavorite(_ favorite: Character) {
     let marvelCharacter = MarvelCharacter(context: context)
     marvelCharacter.setValuesForKeys(["name": favorite.name, "desc": favorite.description, "thumbnailPath": favorite.thumbnail.path, "thumbnailExtension": favorite.thumbnail.imageExtension])
@@ -64,11 +59,11 @@ extension DataManager: DataManagerProtocol {
   }
   
   func deleteFavorite(_ name: String) {
-    let fetchRequest = NSFetchRequest<MarvelCharacter>(entityName: characterEntity)
+    let fetchRequest = NSFetchRequest<MarvelCharacter>(entityName: Constants.CoreDataManager.characterEntity)
     fetchRequest.predicate = NSPredicate(format:"name = %@", name)
     do {
       let favorites = try context.fetch(fetchRequest)
-      if favorites.count > 0 {
+      if !favorites.isEmpty {
         context.delete(favorites[0])
       }
       try context.save()
@@ -77,9 +72,9 @@ extension DataManager: DataManagerProtocol {
     }
   }
   
-  func getFavorites() -> [Character] {
+  func getCoreDataFavorites() -> [Character] {
     do {
-      let fetchRequest = NSFetchRequest<MarvelCharacter>(entityName: characterEntity)
+      let fetchRequest = NSFetchRequest<MarvelCharacter>(entityName: Constants.CoreDataManager.characterEntity)
       let marvelCharacters = try context.fetch(fetchRequest)
       var favorites = [Character]()
       for marvelCharacter in marvelCharacters {

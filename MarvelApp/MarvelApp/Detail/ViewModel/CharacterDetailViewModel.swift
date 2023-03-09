@@ -9,26 +9,29 @@ import Foundation
 import RxSwift
 
 protocol CharacterDetailViewModelProtocol {
-    var view: CharacterDetailViewController? { get }
-    var router: CharacterDetailRouter? { get }
-    func bind(view: CharacterDetailViewController, router: CharacterDetailRouter)
-    func saveFavorite(_ favorite: Character)
+  var view: CharacterDetailViewControllerProtocol? { get }
+  var router: CharacterDetailRouterProtocol? { get }
+  var coreDataManager: CoreDataManagerProtocol? { get }
+  func bind(view: CharacterDetailViewControllerProtocol, router: CharacterDetailRouterProtocol, coreDataManager: CoreDataManagerProtocol)
+  func saveFavorite(_ favorite: Character)
 }
 
 final class CharacterDetailViewModel: CharacterDetailViewModelProtocol {
-    // MARK: Variables
-    weak var view: CharacterDetailViewController?
-    var router: CharacterDetailRouter?
-    private var dataManager = DataManager()
-
-    // MARK: Connecting view and router
-    func bind(view: CharacterDetailViewController, router: CharacterDetailRouter) {
-        self.view = view
-        self.router = router
-        self.router?.setSourceView(view)
-    }
-
-    func saveFavorite(_ favorite: Character) {
-        dataManager.saveFavorite(favorite)
-    }
+  // MARK: Variables
+  var view: CharacterDetailViewControllerProtocol?
+  var router: CharacterDetailRouterProtocol?
+  var coreDataManager: CoreDataManagerProtocol?
+  
+  // MARK: Connecting view and router
+  func bind(view: CharacterDetailViewControllerProtocol, router: CharacterDetailRouterProtocol, coreDataManager: CoreDataManagerProtocol) {
+    self.view = view
+    self.router = router
+    self.coreDataManager = coreDataManager
+    self.router?.setSourceView(view as? UIViewController)
+  }
+  
+  func saveFavorite(_ favorite: Character) {
+    guard let coreDataManager else { return }
+    coreDataManager.saveFavorite(favorite)
+  }
 }

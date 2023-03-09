@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9E004DCB27C4573C008693E5 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E004DC927C4573C008693E5 /* FavoritesViewController.swift */; };
-		9E004DCC27C4573C008693E5 /* FavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E004DCA27C4573C008693E5 /* FavoritesViewController.xib */; };
 		9E004DCE27C45747008693E5 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E004DCD27C45747008693E5 /* FavoritesViewModel.swift */; };
 		9E004DD027C45752008693E5 /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E004DCF27C45752008693E5 /* FavoritesRouter.swift */; };
 		9E004DD627C468CE008693E5 /* MarvelApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E004DD427C468CE008693E5 /* MarvelApp.xcdatamodeld */; };
@@ -25,18 +24,15 @@
 		9E70FF0D27BD29EC00789EEA /* MarvelAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF0C27BD29EC00789EEA /* MarvelAppUITestsLaunchTests.swift */; };
 		9E70FF1E27BD2B2A00789EEA /* CharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF1D27BD2B2A00789EEA /* CharacterListViewModel.swift */; };
 		9E70FF2127BD2B4000789EEA /* CharacterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF1F27BD2B4000789EEA /* CharacterListViewController.swift */; };
-		9E70FF2227BD2B4000789EEA /* CharacterListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E70FF2027BD2B4000789EEA /* CharacterListViewController.xib */; };
 		9E70FF2D27BD2BD500789EEA /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF2C27BD2BD500789EEA /* NetworkManager.swift */; };
-		9E70FF3027BD2BE400789EEA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF2F27BD2BE400789EEA /* DataManager.swift */; };
+		9E70FF3027BD2BE400789EEA /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF2F27BD2BE400789EEA /* CoreDataManager.swift */; };
 		9E70FF3227BD2C0C00789EEA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF3127BD2C0C00789EEA /* Constants.swift */; };
 		9E70FF3927BD36BE00789EEA /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF3727BD36BE00789EEA /* CharacterDetailViewController.swift */; };
-		9E70FF3A27BD36BE00789EEA /* CharacterDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E70FF3827BD36BE00789EEA /* CharacterDetailViewController.xib */; };
 		9E70FF3C27BD36CE00789EEA /* CharacterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF3B27BD36CE00789EEA /* CharacterDetailViewModel.swift */; };
 		9E70FF4127BD397100789EEA /* CharacterListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF4027BD397100789EEA /* CharacterListRouter.swift */; };
 		9E70FF4427BD398E00789EEA /* CharacterDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF4327BD398E00789EEA /* CharacterDetailRouter.swift */; };
 		9E70FF4727BD4A5200789EEA /* String+CommonCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF4627BD4A5200789EEA /* String+CommonCrypto.swift */; };
 		9E70FF4B27BDB27600789EEA /* CharacterCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF4927BDB27600789EEA /* CharacterCustomCell.swift */; };
-		9E70FF4C27BDB27600789EEA /* CharacterCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E70FF4A27BDB27600789EEA /* CharacterCustomCell.xib */; };
 		9E70FF4E27BDD30900789EEA /* UIImageView+URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF4D27BDD30900789EEA /* UIImageView+URLSession.swift */; };
 		9E70FF5227BDE27B00789EEA /* URLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF5127BDE27B00789EEA /* URLHandler.swift */; };
 		9E70FF5927BE025700789EEA /* MockCharacters.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E70FF5827BE025700789EEA /* MockCharacters.json */; };
@@ -71,7 +67,6 @@
 		64E7C6C72D3AB5778D8CF5C2 /* Pods-MarvelAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelAppTests.release.xcconfig"; path = "Target Support Files/Pods-MarvelAppTests/Pods-MarvelAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		845701402C38F57FD7336A92 /* Pods-MarvelApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelApp.release.xcconfig"; path = "Target Support Files/Pods-MarvelApp/Pods-MarvelApp.release.xcconfig"; sourceTree = "<group>"; };
 		9E004DC927C4573C008693E5 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
-		9E004DCA27C4573C008693E5 /* FavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesViewController.xib; sourceTree = "<group>"; };
 		9E004DCD27C45747008693E5 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		9E004DCF27C45752008693E5 /* FavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		9E004DD527C468CE008693E5 /* MarvelApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MarvelApp.xcdatamodel; sourceTree = "<group>"; };
@@ -92,18 +87,15 @@
 		9E70FF0C27BD29EC00789EEA /* MarvelAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9E70FF1D27BD2B2A00789EEA /* CharacterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewModel.swift; sourceTree = "<group>"; };
 		9E70FF1F27BD2B4000789EEA /* CharacterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewController.swift; sourceTree = "<group>"; };
-		9E70FF2027BD2B4000789EEA /* CharacterListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterListViewController.xib; sourceTree = "<group>"; };
 		9E70FF2C27BD2BD500789EEA /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		9E70FF2F27BD2BE400789EEA /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		9E70FF2F27BD2BE400789EEA /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		9E70FF3127BD2C0C00789EEA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9E70FF3727BD36BE00789EEA /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
-		9E70FF3827BD36BE00789EEA /* CharacterDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterDetailViewController.xib; sourceTree = "<group>"; };
 		9E70FF3B27BD36CE00789EEA /* CharacterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModel.swift; sourceTree = "<group>"; };
 		9E70FF4027BD397100789EEA /* CharacterListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListRouter.swift; sourceTree = "<group>"; };
 		9E70FF4327BD398E00789EEA /* CharacterDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailRouter.swift; sourceTree = "<group>"; };
 		9E70FF4627BD4A5200789EEA /* String+CommonCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CommonCrypto.swift"; sourceTree = "<group>"; };
 		9E70FF4927BDB27600789EEA /* CharacterCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCustomCell.swift; sourceTree = "<group>"; };
-		9E70FF4A27BDB27600789EEA /* CharacterCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCustomCell.xib; sourceTree = "<group>"; };
 		9E70FF4D27BDD30900789EEA /* UIImageView+URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+URLSession.swift"; sourceTree = "<group>"; };
 		9E70FF5127BDE27B00789EEA /* URLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLHandler.swift; sourceTree = "<group>"; };
 		9E70FF5827BE025700789EEA /* MockCharacters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockCharacters.json; sourceTree = "<group>"; };
@@ -188,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				9E004DC927C4573C008693E5 /* FavoritesViewController.swift */,
-				9E004DCA27C4573C008693E5 /* FavoritesViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -287,9 +278,8 @@
 		9E70FF2627BD2B6600789EEA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9E70FF4827BDB24C00789EEA /* Cell */,
 				9E70FF1F27BD2B4000789EEA /* CharacterListViewController.swift */,
-				9E70FF2027BD2B4000789EEA /* CharacterListViewController.xib */,
+				9E70FF4827BDB24C00789EEA /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -328,7 +318,7 @@
 			children = (
 				9E70FF3127BD2C0C00789EEA /* Constants.swift */,
 				9E70FF4527BD4A3B00789EEA /* Extensions */,
-				9E70FF2E27BD2BD900789EEA /* Data */,
+				9E70FF2E27BD2BD900789EEA /* CoreData */,
 				9E70FF2B27BD2BC100789EEA /* Network */,
 			);
 			path = Utils;
@@ -343,13 +333,13 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		9E70FF2E27BD2BD900789EEA /* Data */ = {
+		9E70FF2E27BD2BD900789EEA /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				9E70FF2F27BD2BE400789EEA /* DataManager.swift */,
+				9E70FF2F27BD2BE400789EEA /* CoreDataManager.swift */,
 				9E004DD427C468CE008693E5 /* MarvelApp.xcdatamodeld */,
 			);
-			path = Data;
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		9E70FF3327BD2C1700789EEA /* Detail */ = {
@@ -374,7 +364,6 @@
 			isa = PBXGroup;
 			children = (
 				9E70FF3727BD36BE00789EEA /* CharacterDetailViewController.swift */,
-				9E70FF3827BD36BE00789EEA /* CharacterDetailViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -409,7 +398,6 @@
 			isa = PBXGroup;
 			children = (
 				9E70FF4927BDB27600789EEA /* CharacterCustomCell.swift */,
-				9E70FF4A27BDB27600789EEA /* CharacterCustomCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -542,12 +530,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E70FF2227BD2B4000789EEA /* CharacterListViewController.xib in Resources */,
 				9E70FEF627BD29EC00789EEA /* LaunchScreen.storyboard in Resources */,
 				9E70FEF327BD29EC00789EEA /* Assets.xcassets in Resources */,
-				9E70FF3A27BD36BE00789EEA /* CharacterDetailViewController.xib in Resources */,
-				9E004DCC27C4573C008693E5 /* FavoritesViewController.xib in Resources */,
-				9E70FF4C27BDB27600789EEA /* CharacterCustomCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,7 +664,7 @@
 				9E70FF5B27BEB0FD00789EEA /* CharacterDataWrapper.swift in Sources */,
 				9E70FF3927BD36BE00789EEA /* CharacterDetailViewController.swift in Sources */,
 				9E70FF4727BD4A5200789EEA /* String+CommonCrypto.swift in Sources */,
-				9E70FF3027BD2BE400789EEA /* DataManager.swift in Sources */,
+				9E70FF3027BD2BE400789EEA /* CoreDataManager.swift in Sources */,
 				9E70FF4B27BDB27600789EEA /* CharacterCustomCell.swift in Sources */,
 				9E70FF4E27BDD30900789EEA /* UIImageView+URLSession.swift in Sources */,
 				9E70FF5F27BEB11800789EEA /* Character.swift in Sources */,
@@ -873,7 +857,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZTN4BYWW8P;
+				DEVELOPMENT_TEAM = UTN2YWBKP2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MarvelApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -901,7 +885,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZTN4BYWW8P;
+				DEVELOPMENT_TEAM = UTN2YWBKP2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MarvelApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
