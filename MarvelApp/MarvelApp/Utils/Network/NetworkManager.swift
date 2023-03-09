@@ -30,10 +30,10 @@ final class NetworkManager: NetworkManagerProtocol {
                         }
                     } catch let error {
                         observer.onError(error)
-                        print("\n[X] Error: \(error.localizedDescription)\n")
+                        print("\n❌Error: \(error.localizedDescription)\n")
                     }
                 } else {
-                    print("\n[X] Error: \(response.statusCode)\n")
+                    print("\n❌ Error: \(response.statusCode)\n")
                 }
                 observer.onCompleted()
             }

@@ -132,7 +132,7 @@ extension CharacterListViewController {
         }
         self.reloadTableView()
       } onError: { error in
-        print("\n[X] Error: \(error.localizedDescription)\n")
+        print("\n❌ Error: \(error.localizedDescription)\n")
         self.showAlert(title: "ERROR", message: error.localizedDescription)
       } onCompleted: {}
       .disposed(by: disposeBag)
@@ -177,7 +177,7 @@ extension CharacterListViewController: UISearchControllerDelegate {
           return character.name.contains(result)
         })
       } onError: { error in
-        print("\n[X] Error: \(error.localizedDescription)\n")
+        print("\n❌ Error: \(error.localizedDescription)\n")
         self.showAlert(title: "ERROR", message: error.localizedDescription)
       }
       .disposed(by: disposeBag)
