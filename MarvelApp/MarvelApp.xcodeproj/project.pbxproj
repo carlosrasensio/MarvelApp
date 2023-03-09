@@ -137,6 +137,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		70D55BD629BA50CB009921F0 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				9E70FF4927BDB27600789EEA /* CharacterCustomCell.swift */,
+			);
+			path = CustomCell;
+			sourceTree = "<group>";
+		};
 		79387D38A5C62B8AA9DBCD07 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,7 +287,6 @@
 			isa = PBXGroup;
 			children = (
 				9E70FF1F27BD2B4000789EEA /* CharacterListViewController.swift */,
-				9E70FF4827BDB24C00789EEA /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -317,8 +324,9 @@
 			isa = PBXGroup;
 			children = (
 				9E70FF3127BD2C0C00789EEA /* Constants.swift */,
-				9E70FF4527BD4A3B00789EEA /* Extensions */,
 				9E70FF2E27BD2BD900789EEA /* CoreData */,
+				70D55BD629BA50CB009921F0 /* CustomCell */,
+				9E70FF4527BD4A3B00789EEA /* Extensions */,
 				9E70FF2B27BD2BC100789EEA /* Network */,
 			);
 			path = Utils;
@@ -392,14 +400,6 @@
 				9E004DD727C472C3008693E5 /* UIViewController+Alert.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		9E70FF4827BDB24C00789EEA /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				9E70FF4927BDB27600789EEA /* CharacterCustomCell.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		9E70FF5727BE023E00789EEA /* Mocks */ = {
