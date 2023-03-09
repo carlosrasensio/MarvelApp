@@ -8,6 +8,7 @@
 import UIKit
 
 protocol CharacterDetailViewControllerProtocol {
+  func setupUI()
   func setupInfo()
 }
 
@@ -40,7 +41,6 @@ final class CharacterDetailViewController: UIViewController {
   // MARK: Life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupNavigationBar()
     setupUI()
     setupInfo()
     viewModel.bind(view: self, router: router, coreDataManager: coreDataManager)
@@ -48,7 +48,19 @@ final class CharacterDetailViewController: UIViewController {
 }
 
 // MARK: - CharacterDetailViewControllerProtocol
+
 extension CharacterDetailViewController: CharacterDetailViewControllerProtocol {
+  func setupUI() {
+    DispatchQueue.main.async {
+      self.view.backgroundColor = .black
+      self.setupNavigationBar()
+      self.setupCharacterImageView()
+      self.setupTitleLabel()
+      self.setupDescriptionLabel()
+      self.setupFavoriteButton()
+    }
+  }
+  
   func setupInfo() {
     guard let character = character else { return }
     characterImageView.getImageFromURL(character.thumbnail.path, .portrait_incredible, character.thumbnail.imageExtension)
@@ -63,19 +75,10 @@ extension CharacterDetailViewController: CharacterDetailViewControllerProtocol {
 }
 
 // MARK: - Private methods
+
 private extension CharacterDetailViewController {
   func setupNavigationBar() {
     self.navigationItem.title = "Detail"
-  }
-  
-  func setupUI() {
-    DispatchQueue.main.async {
-      self.view.backgroundColor = .black
-      self.setupCharacterImageView()
-      self.setupTitleLabel()
-      self.setupDescriptionLabel()
-      self.setupFavoriteButton()
-    }
   }
   
   func setupCharacterImageView() {
@@ -103,25 +106,25 @@ private extension CharacterDetailViewController {
     titleLabel.textAlignment = .center
     titleLabel.textColor = .white
   }
-
+  
   func setupDescriptionLabel() {
     view.addSubview(descriptionLabel)
-
+    
     descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 24),
       descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
       descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80)
     ])
-
+    
     descriptionLabel.textAlignment = .justified
     descriptionLabel.numberOfLines = 0
     descriptionLabel.textColor = .white
   }
-
+  
   func setupFavoriteButton() {
     view.addSubview(favoriteButton)
-
+    
     favoriteButton.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       favoriteButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 36),
@@ -130,7 +133,7 @@ private extension CharacterDetailViewController {
       favoriteButton.heightAnchor.constraint(equalToConstant: 40),
       favoriteButton.widthAnchor.constraint(equalToConstant: 120)
     ])
-
+    
     favoriteButton.isHidden = isHiddenFavoriteButton ?? false
     favoriteButton.backgroundColor = .red
     favoriteButton.setTitleColor(.black, for: .normal)
@@ -145,7 +148,8 @@ private extension CharacterDetailViewController {
 }
 
 // MARK: - Actions
-@objc extension CharacterDetailViewController {
+
+@objc private extension CharacterDetailViewController {
   func didPressFavoriteButton() {
     saveFavorite()
     guard let character = character else { return }

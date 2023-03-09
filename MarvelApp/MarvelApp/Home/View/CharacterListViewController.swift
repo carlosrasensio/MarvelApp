@@ -10,11 +10,11 @@ import RxSwift
 import RxCocoa
 
 protocol CharacterListViewControllerProtocol {
-  func setupTableView()
+  func setupUI()
   func getCharacters(offset: Int)
 }
 
-final class CharacterListViewController: UIViewController, CharacterListViewControllerProtocol {
+final class CharacterListViewController: UIViewController {
   // MARK: Objects
   private lazy var tableView = UITableView()
   private lazy var activityIndicator = UIActivityIndicatorView()
@@ -55,72 +55,22 @@ final class CharacterListViewController: UIViewController, CharacterListViewCont
   // MARK: Life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupNavigationBar()
-    setupSearchBarController()
-    setupTableView()
-    setupActivityIndicator()
+    setupUI()
     viewModel.bind(view: self, router: router, networkManager: networkManager)
     getCharacters()
   }
-  
-  // MARK: NavigationItem configuration
-  private func setupNavigationBar() {
-    self.navigationItem.title = "Home"
-    navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(showFavorites))
-    navigationItem.rightBarButtonItem?.tintColor = .black
-  }
-  
-  // MARK: Table view configuration
-  func setupTableView() {
-    tableView.delegate = self
-    tableView.dataSource = self
-    tableView.rowHeight = UITableView.automaticDimension
-    tableView.register(CharacterCustomCell.self, forCellReuseIdentifier: Constants.CustomCells.characterCellId)
-
-    view.addSubview(tableView)
-    tableView.translatesAutoresizingMaskIntoConstraints = false
-    tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-    tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-    tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-    tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-  }
-  
-  func setupActivityIndicator() {
-    view.addSubview(activityIndicator)
-    activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    
-    activityIndicator.color = .red
-  }
-  
-  private func reloadTableView() {
-    DispatchQueue.main.async {
-      self.showActivityIndicator(false)
-      self.tableView.reloadData()
-    }
-  }
-  
-  private func hideBottomLoader() {
-    DispatchQueue.main.async {
-      let lastListIndexPath = IndexPath(row: self.characters.count - 1, section: TableSection.charactersList.rawValue)
-      self.tableView.scrollToRow(at: lastListIndexPath, at: .bottom, animated: true)
-    }
-  }
-  
-  // MARK: Activity indicator configuraion
-  private func showActivityIndicator(_ show: Bool) {
-    activityIndicator.isHidden = !show
-    if show {
-      activityIndicator.startAnimating()
-    } else {
-      activityIndicator.stopAnimating()
-    }
-  }
 }
 
-// MARK: - Get data from ViewModel with RxSwift
+// MARK: - CharacterListViewControllerProtocol
 
-extension CharacterListViewController {
+extension CharacterListViewController: CharacterListViewControllerProtocol {
+  func setupUI() {
+    setupNavigationBar()
+    setupSearchBarController()
+    setupActivityIndicator()
+    setupTableView()
+  }
+  
   func getCharacters(offset: Int = 0) {
     showActivityIndicator(true)
     return viewModel.getCharacters(offset: offset)
@@ -139,31 +89,38 @@ extension CharacterListViewController {
   }
 }
 
-// MARK: - Navigation bar right item action
+// MARK: - Private methods
 
 private extension CharacterListViewController {
-  @objc func showFavorites() {
-    viewModel.createFavoritesView()
-  }
-}
-
-// MARK: - SearchController functions
-extension CharacterListViewController: UISearchControllerDelegate {
-  private func createSearchBarController() -> UISearchController {
-    let controller = UISearchController(searchResultsController: nil)
-    controller.hidesNavigationBarDuringPresentation = true
-    controller.obscuresBackgroundDuringPresentation = false
-    controller.searchBar.sizeToFit()
-    controller.searchBar.barStyle = .default
-    controller.searchBar.backgroundColor = .red
-    controller.searchBar.placeholder = "Search your MARVEL character!"
-    let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
-    UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes, for: .normal)
-    
-    return controller
+  func setupNavigationBar() {
+    self.navigationItem.title = "Home"
+    navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(showFavorites))
+    navigationItem.rightBarButtonItem?.tintColor = .black
   }
   
-  private func setupSearchBarController() {
+  func setupActivityIndicator() {
+    view.addSubview(activityIndicator)
+    activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    
+    activityIndicator.color = .red
+  }
+  
+  func setupTableView() {
+    tableView.delegate = self
+    tableView.dataSource = self
+    tableView.rowHeight = UITableView.automaticDimension
+    tableView.register(CharacterCustomCell.self, forCellReuseIdentifier: Constants.CustomCells.characterCellId)
+
+    view.addSubview(tableView)
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+    tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+  }
+  
+  func setupSearchBarController() {
     let searchBar = searchController.searchBar
     searchController.delegate = self
     tableView.tableHeaderView = searchBar
@@ -187,9 +144,59 @@ extension CharacterListViewController: UISearchControllerDelegate {
     searchController.isActive = false
     reloadTableView()
   }
+  
+  func hideBottomLoader() {
+    DispatchQueue.main.async {
+      let lastListIndexPath = IndexPath(row: self.characters.count - 1, section: TableSection.charactersList.rawValue)
+      self.tableView.scrollToRow(at: lastListIndexPath, at: .bottom, animated: true)
+    }
+  }
+  
+  func showActivityIndicator(_ show: Bool) {
+    activityIndicator.isHidden = !show
+    if show {
+      activityIndicator.startAnimating()
+    } else {
+      activityIndicator.stopAnimating()
+    }
+  }
+  
+  func reloadTableView() {
+    DispatchQueue.main.async {
+      self.showActivityIndicator(false)
+      self.tableView.reloadData()
+    }
+  }
+}
+
+// MARK: - Actions
+
+@objc private extension CharacterListViewController {
+  func showFavorites() {
+    viewModel.createFavoritesView()
+  }
+}
+
+// MARK: - UISearchControllerDelegate
+
+extension CharacterListViewController: UISearchControllerDelegate {
+  private func createSearchBarController() -> UISearchController {
+    let controller = UISearchController(searchResultsController: nil)
+    controller.hidesNavigationBarDuringPresentation = true
+    controller.obscuresBackgroundDuringPresentation = false
+    controller.searchBar.sizeToFit()
+    controller.searchBar.barStyle = .default
+    controller.searchBar.backgroundColor = .red
+    controller.searchBar.placeholder = "Search your MARVEL character!"
+    let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
+    UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes, for: .normal)
+    
+    return controller
+  }
 }
 
 // MARK: - UITableViewDataSource
+
 extension CharacterListViewController: UITableViewDataSource {
   func numberOfSections(in tableView: UITableView) -> Int {
     2
@@ -238,6 +245,7 @@ extension CharacterListViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
+
 extension CharacterListViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if searchController.isActive && searchController.searchBar.text != "" {

@@ -8,12 +8,13 @@
 import UIKit
 
 protocol FavoritesViewControllerProtocol {
-  func setupTableView()
+  func setupUI()
   func getFavorites()
+  func deleteFavorite(_ name: String)
 }
 
-final class FavoritesViewController: UIViewController, FavoritesViewControllerProtocol {
-  // MARK: Outlet
+final class FavoritesViewController: UIViewController {
+  // MARK: Objects
   private lazy var tableView = UITableView()
   private lazy var activityIndicator = UIActivityIndicatorView()
   
@@ -38,21 +39,40 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
   // MARK: Life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupNavigationItem()
-    setupTableView()
-    setupActivityIndicator()
+    setupUI()
     viewModel.bind(view: self, router: router, coreDataManager: coreDataManager)
     getFavorites()
   }
+}
+
+// MARK: - FavoritesViewControllerProtocol
+
+extension FavoritesViewController: FavoritesViewControllerProtocol {
+  func setupUI() {
+    setupNavigationItem()
+    setupActivityIndicator()
+    setupTableView()
+  }
   
-  // MARK: NavigationItem configuration
-  private func setupNavigationItem() {
+  func getFavorites() {
+    self.favorites = viewModel.getCoreDataFavorites()
+    self.reloadTableView()
+  }
+  
+  func deleteFavorite(_ name: String) {
+    viewModel.deleteFavorite(name)
+  }
+}
+
+// MARK: - Private methods
+
+private extension FavoritesViewController {
+  func setupNavigationItem() {
     navigationController?.navigationBar.barTintColor = UIColor.red
     self.navigationItem.title = "Favorites"
     navigationItem.rightBarButtonItem?.tintColor = .black
   }
   
-  // MARK: Table view configuration
   func setupTableView() {
     tableView.delegate = self
     tableView.dataSource = self
@@ -77,8 +97,7 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
     activityIndicator.color = .red
   }
   
-  // MARK: Activity indicator configuraion
-  private func setActivityIndicator(_ show: Bool) {
+  func setActivityIndicator(_ show: Bool) {
     activityIndicator.isHidden = !show
     if show {
       activityIndicator.startAnimating()
@@ -87,24 +106,11 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
     }
   }
   
-  private func reloadTableView() {
+  func reloadTableView() {
     DispatchQueue.main.async {
       self.setActivityIndicator(false)
       self.tableView.reloadData()
     }
-  }
-}
-
-// MARK: - Get data from ViewModel with RxSwift
-
-extension FavoritesViewController {
-  func getFavorites() {
-    self.favorites = viewModel.getCoreDataFavorites()
-    self.reloadTableView()
-  }
-  
-  func deleteFavorite(_ name: String) {
-    viewModel.deleteFavorite(name)
   }
 }
 

@@ -9,12 +9,11 @@ import Foundation
 import UIKit
 
 protocol CharacterDetailRouterProtocol {
-  var character: Character? { get }
   func createCharacterDetailViewController() -> UIViewController
   func setSourceView(_  sourceView: UIViewController?)
 }
 
-final class CharacterDetailRouter: CharacterDetailRouterProtocol {
+final class CharacterDetailRouter {
   // MARK: Variables
   private var sourceView: UIViewController?
   var viewController: UIViewController {
@@ -28,8 +27,11 @@ final class CharacterDetailRouter: CharacterDetailRouterProtocol {
     self.character = character
     self.isHiddenFavoriteButton = isHiddenFavoriteButton
   }
-  
-  // MARK: Configuration functions
+}
+
+// MARK: - CharacterDetailRouterProtocol
+
+extension CharacterDetailRouter: CharacterDetailRouterProtocol {
   func createCharacterDetailViewController() -> UIViewController {
     let view = CharacterDetailViewController(router: CharacterDetailRouter(), viewModel: CharacterDetailViewModel(), coreDataManager: CoreDataManager())
     view.character = character
