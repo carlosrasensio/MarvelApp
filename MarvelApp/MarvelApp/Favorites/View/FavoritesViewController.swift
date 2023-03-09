@@ -20,14 +20,14 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
   // MARK: Variables
   private var router: FavoritesRouterProtocol
   private var viewModel: FavoritesViewModelProtocol
-  private var dataManager: DataManagerProtocol
+  private var coreDataManager: CoreDataManagerProtocol
   var favorites = [Character]()
   
   // MARK: Initializers
-  init(router: FavoritesRouterProtocol, viewModel: FavoritesViewModelProtocol, dataManager: DataManagerProtocol) {
+  init(router: FavoritesRouterProtocol, viewModel: FavoritesViewModelProtocol, coreDataManager: CoreDataManagerProtocol) {
     self.router = router
     self.viewModel = viewModel
-    self.dataManager = dataManager
+    self.coreDataManager = coreDataManager
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -41,7 +41,7 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
     setupNavigationItem()
     setupTableView()
     setupActivityIndicator()
-    viewModel.bind(view: self, router: router, dataManager: dataManager)
+    viewModel.bind(view: self, router: router, coreDataManager: coreDataManager)
     getFavorites()
   }
   

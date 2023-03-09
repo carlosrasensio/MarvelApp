@@ -25,7 +25,7 @@
 		9E70FF1E27BD2B2A00789EEA /* CharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF1D27BD2B2A00789EEA /* CharacterListViewModel.swift */; };
 		9E70FF2127BD2B4000789EEA /* CharacterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF1F27BD2B4000789EEA /* CharacterListViewController.swift */; };
 		9E70FF2D27BD2BD500789EEA /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF2C27BD2BD500789EEA /* NetworkManager.swift */; };
-		9E70FF3027BD2BE400789EEA /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF2F27BD2BE400789EEA /* DataManager.swift */; };
+		9E70FF3027BD2BE400789EEA /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF2F27BD2BE400789EEA /* CoreDataManager.swift */; };
 		9E70FF3227BD2C0C00789EEA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF3127BD2C0C00789EEA /* Constants.swift */; };
 		9E70FF3927BD36BE00789EEA /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF3727BD36BE00789EEA /* CharacterDetailViewController.swift */; };
 		9E70FF3C27BD36CE00789EEA /* CharacterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70FF3B27BD36CE00789EEA /* CharacterDetailViewModel.swift */; };
@@ -88,7 +88,7 @@
 		9E70FF1D27BD2B2A00789EEA /* CharacterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewModel.swift; sourceTree = "<group>"; };
 		9E70FF1F27BD2B4000789EEA /* CharacterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewController.swift; sourceTree = "<group>"; };
 		9E70FF2C27BD2BD500789EEA /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		9E70FF2F27BD2BE400789EEA /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		9E70FF2F27BD2BE400789EEA /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		9E70FF3127BD2C0C00789EEA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9E70FF3727BD36BE00789EEA /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
 		9E70FF3B27BD36CE00789EEA /* CharacterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModel.swift; sourceTree = "<group>"; };
@@ -318,7 +318,7 @@
 			children = (
 				9E70FF3127BD2C0C00789EEA /* Constants.swift */,
 				9E70FF4527BD4A3B00789EEA /* Extensions */,
-				9E70FF2E27BD2BD900789EEA /* Data */,
+				9E70FF2E27BD2BD900789EEA /* CoreData */,
 				9E70FF2B27BD2BC100789EEA /* Network */,
 			);
 			path = Utils;
@@ -333,13 +333,13 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		9E70FF2E27BD2BD900789EEA /* Data */ = {
+		9E70FF2E27BD2BD900789EEA /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				9E70FF2F27BD2BE400789EEA /* DataManager.swift */,
+				9E70FF2F27BD2BE400789EEA /* CoreDataManager.swift */,
 				9E004DD427C468CE008693E5 /* MarvelApp.xcdatamodeld */,
 			);
-			path = Data;
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		9E70FF3327BD2C1700789EEA /* Detail */ = {
@@ -664,7 +664,7 @@
 				9E70FF5B27BEB0FD00789EEA /* CharacterDataWrapper.swift in Sources */,
 				9E70FF3927BD36BE00789EEA /* CharacterDetailViewController.swift in Sources */,
 				9E70FF4727BD4A5200789EEA /* String+CommonCrypto.swift in Sources */,
-				9E70FF3027BD2BE400789EEA /* DataManager.swift in Sources */,
+				9E70FF3027BD2BE400789EEA /* CoreDataManager.swift in Sources */,
 				9E70FF4B27BDB27600789EEA /* CharacterCustomCell.swift in Sources */,
 				9E70FF4E27BDD30900789EEA /* UIImageView+URLSession.swift in Sources */,
 				9E70FF5F27BEB11800789EEA /* Character.swift in Sources */,

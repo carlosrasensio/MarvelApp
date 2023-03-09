@@ -21,15 +21,15 @@ final class CharacterDetailViewController: UIViewController {
   // MARK: Variables
   private var router: CharacterDetailRouterProtocol
   private var viewModel: CharacterDetailViewModelProtocol
-  private var dataManager: DataManagerProtocol
+  private var coreDataManager: CoreDataManagerProtocol
   var character: Character?
   var isHiddenFavoriteButton: Bool?
   
   // MARK: Initializers
-  init(router: CharacterDetailRouterProtocol, viewModel: CharacterDetailViewModelProtocol, dataManager: DataManagerProtocol) {
+  init(router: CharacterDetailRouterProtocol, viewModel: CharacterDetailViewModelProtocol, coreDataManager: CoreDataManagerProtocol) {
     self.router = router
     self.viewModel = viewModel
-    self.dataManager = dataManager
+    self.coreDataManager = coreDataManager
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -43,7 +43,7 @@ final class CharacterDetailViewController: UIViewController {
     setupNavigationBar()
     setupUI()
     setupInfo()
-    viewModel.bind(view: self, router: router, dataManager: dataManager)
+    viewModel.bind(view: self, router: router, coreDataManager: coreDataManager)
   }
 }
 
@@ -98,7 +98,8 @@ private extension CharacterDetailViewController {
       titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
       titleLabel.heightAnchor.constraint(equalToConstant: 30)
     ])
-
+    
+    titleLabel.font = .boldSystemFont(ofSize: 24)
     titleLabel.textAlignment = .center
     titleLabel.textColor = .white
   }

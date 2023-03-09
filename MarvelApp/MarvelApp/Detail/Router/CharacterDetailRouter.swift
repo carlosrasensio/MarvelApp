@@ -31,7 +31,7 @@ final class CharacterDetailRouter: CharacterDetailRouterProtocol {
   
   // MARK: Configuration functions
   func createCharacterDetailViewController() -> UIViewController {
-    let view = CharacterDetailViewController(router: CharacterDetailRouter(), viewModel: CharacterDetailViewModel(), dataManager: DataManager())
+    let view = CharacterDetailViewController(router: CharacterDetailRouter(), viewModel: CharacterDetailViewModel(), coreDataManager: CoreDataManager())
     view.character = character
     view.isHiddenFavoriteButton = isHiddenFavoriteButton
     
