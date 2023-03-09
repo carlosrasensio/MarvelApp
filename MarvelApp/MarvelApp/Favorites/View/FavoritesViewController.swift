@@ -57,6 +57,7 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
     tableView.delegate = self
     tableView.dataSource = self
     tableView.rowHeight = UITableView.automaticDimension
+    tableView.backgroundColor = .black
     tableView.register(UINib(nibName: Constants.CustomCells.characterCellId, bundle: nil), forCellReuseIdentifier: Constants.CustomCells.characterCellId)
     tableView.accessibilityIdentifier = "favoritesTableView"
     
