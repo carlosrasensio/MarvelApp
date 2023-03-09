@@ -132,7 +132,7 @@ private extension CharacterDetailViewController {
 
     favoriteButton.isHidden = isHiddenFavoriteButton ?? false
     favoriteButton.backgroundColor = .red
-    favoriteButton.tintColor = .black
+    favoriteButton.setTitleColor(.black, for: .normal)
     favoriteButton.layer.cornerRadius = 20
     favoriteButton.addTarget(self, action: #selector(didPressFavoriteButton), for: .touchUpInside)
   }

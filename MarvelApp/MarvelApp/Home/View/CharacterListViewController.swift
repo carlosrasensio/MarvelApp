@@ -66,7 +66,7 @@ final class CharacterListViewController: UIViewController, CharacterListViewCont
   // MARK: NavigationItem configuration
   private func setupNavigationBar() {
     self.navigationItem.title = "Home"
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favs", style: .plain, target: self, action: #selector(showFavorites))
+    navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(showFavorites))
     navigationItem.rightBarButtonItem?.tintColor = .black
   }
   
