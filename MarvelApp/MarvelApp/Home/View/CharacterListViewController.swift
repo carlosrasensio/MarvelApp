@@ -75,8 +75,8 @@ final class CharacterListViewController: UIViewController, CharacterListViewCont
     tableView.delegate = self
     tableView.dataSource = self
     tableView.rowHeight = UITableView.automaticDimension
-    tableView.register(UINib(nibName: Constants.CustomCells.characterCellId, bundle: nil), forCellReuseIdentifier: Constants.CustomCells.characterCellId)
-    
+    tableView.register(CharacterCustomCell.self, forCellReuseIdentifier: Constants.CustomCells.characterCellId)
+
     view.addSubview(tableView)
     tableView.translatesAutoresizingMaskIntoConstraints = false
     tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -215,7 +215,7 @@ extension CharacterListViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let section = TableSection(rawValue: indexPath.section) else { return UITableViewCell() }
-    let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CustomCells.characterCellId) as! CharacterCustomCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CustomCells.characterCellId, for: indexPath) as! CharacterCustomCell
     switch section {
     case .charactersList:
       if searchController.isActive && searchController.searchBar.text != "" {

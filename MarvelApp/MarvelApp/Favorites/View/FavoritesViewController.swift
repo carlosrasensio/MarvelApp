@@ -58,7 +58,7 @@ final class FavoritesViewController: UIViewController, FavoritesViewControllerPr
     tableView.dataSource = self
     tableView.rowHeight = UITableView.automaticDimension
     tableView.backgroundColor = .black
-    tableView.register(UINib(nibName: Constants.CustomCells.characterCellId, bundle: nil), forCellReuseIdentifier: Constants.CustomCells.characterCellId)
+    tableView.register(CharacterCustomCell.self, forCellReuseIdentifier: Constants.CustomCells.characterCellId)
     tableView.accessibilityIdentifier = "favoritesTableView"
     
     view.addSubview(tableView)
@@ -116,7 +116,7 @@ extension FavoritesViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CustomCells.characterCellId) as! CharacterCustomCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CustomCells.characterCellId, for: indexPath) as! CharacterCustomCell
     cell.titleLabel.text = "\(indexPath.row + 1). " + favorites[indexPath.row].name
     let imagePath = favorites[indexPath.row].thumbnail.path
     let imageExtension = favorites[indexPath.row].thumbnail.imageExtension
