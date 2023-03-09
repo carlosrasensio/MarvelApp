@@ -21,11 +21,12 @@
  - **MVVM** - means Model, View, ViewModel. Also, util classes are used like Router or NetworkManager.
  
     - *Model* - defines the API response data.
-    - *View* - created with .xib and UIViewController, configures UI.
+    - *View* - created programmatically, configures UI.
     - *ViewModel* - business logic, gets the data from service and injects it to the view.
     
     - *Router* - creates and instances the view through the SceneDelegate.
     - *NetworkManager* - responsible for making API calls.
+    - *CoreDataManager* - responsible of persistence, using Core Data.
     - *URLHandler* - responsible for creating service URL.
     
     - *Constants* - app useful data. In this case, especially in order to generate the URL.
