@@ -18,7 +18,7 @@ class URLHandler: URLHandlerProtocol {
     let publicKey = Constants.NetworkManager.publicApiKey
     let privateKey = Constants.NetworkManager.privateApiKey
     let unhashedString = timestamp + privateKey + publicKey
-    let hashToken = unhashedString.convertToMD5()
+    let hashToken = unhashedString.MD5
     let limit = "\(Constants.NetworkManager.limit)"
     let endpoint = Constants.NetworkManager.Endpoints.version + Constants.NetworkManager.Endpoints.type + Constants.NetworkManager.Endpoints.characters
     var components = URLComponents(url: baseURL!.appendingPathComponent(endpoint), resolvingAgainstBaseURL: true)
