@@ -27,7 +27,8 @@ final class CharacterListRouter {
 
 extension CharacterListRouter: CharacterListRouterProtocol {
   func createCharacterListViewController() -> UIViewController {
-    let view = CharacterListViewController(router: CharacterListRouter(), viewModel: CharacterListViewModel(), networkManager: NetworkManager())
+    let networkManager = NetworkManager(urlHandler: URLHandler())
+    let view = CharacterListViewController(router: CharacterListRouter(), viewModel: CharacterListViewModel(), networkManager: networkManager)
     
     return view
   }

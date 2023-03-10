@@ -12,11 +12,23 @@ protocol NetworkManagerProtocol {
   func getCharacters(offset: Int) -> Observable<[Character]>
 }
 
-final class NetworkManager: NetworkManagerProtocol {
+final class NetworkManager {
+  // MARK: Variable
+  private var urlHandler: URLHandler
+  
+  // MARK: Initializer
+  init(urlHandler: URLHandler) {
+    self.urlHandler = urlHandler
+  }
+}
+
+// MARK: - NetworkManagerProtocol
+
+extension NetworkManager: NetworkManagerProtocol {
   func getCharacters(offset: Int) -> Observable<[Character]>  {
     return Observable.create { observer -> Disposable in
-      let urlHandler = URLHandler()
-      let url = urlHandler.getCharactersURL(offset: offset)
+      self.urlHandler = URLHandler()
+      let url = self.urlHandler.getCharactersURL(offset: offset)
       let session = URLSession.shared
       let task = session.dataTask(with: url) { (data, response, error) in
         guard let data = data, error == nil, let response = response as? HTTPURLResponse else { return }
